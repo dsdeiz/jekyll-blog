@@ -6,13 +6,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :private_network, ip: "33.33.33.5"
 
-  config.vm.synced_folder "_site", "/var/www/nginx-default"
-
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
 
     chef.add_recipe "apt"
     chef.add_recipe "nginx"
-    chef.add_recipe "my-jekyll"
+    chef.add_recipe "git"
+    chef.add_recipe "jekyll-blog"
   end
 end
