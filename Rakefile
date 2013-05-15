@@ -36,6 +36,27 @@ namespace :site do
     end
   end
 
+  # Usage: rake "site:page[filename.ext]"
+  desc "Create new page."
+  task :page, [:filename] do |t, args|
+    args.with_defaults(:filename => 'new-page.md')
+    filename = "site/#{args.filename}"
+
+    if File.exist?(filename)
+      puts "#{File.basename(filename)} already exists."
+      exit -1
+    end
+
+    puts "Creating new page: #{filename}"
+
+    open(filename, 'w') do |post|
+      post.puts "---"
+      post.puts "layout: page"
+      post.puts "title:"
+      post.puts "---"
+    end
+  end
+
   # Build jekyll.
   desc "Generate site."
   task :generate do
