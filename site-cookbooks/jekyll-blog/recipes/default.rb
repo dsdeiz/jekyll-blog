@@ -1,18 +1,13 @@
-application "jekyll-blog" do
-  path "/var/www"
-  owner "www-data"
-  group "www-data"
-
-  repository "https://github.com/dsdeiz/jekyll-blog.git"
-  revision "master"
-end
-
-template "#{node['nginx']['dir']}/sites-available/jekyll-blog" do
-  source "jekyll-blog.erb"
+template "#{node['nginx']['dir']}/sites-available/#{node['jekyll-blog']['hostname']}" do
+  source "site.erb"
   owner "root"
   group "root"
   mode 00644
   notifies :reload, 'service[nginx]'
 end
 
-nginx_site "jekyll-blog"
+nginx_site "#{node['jekyll-blog']['hostname']}"
+
+nginx_site "default" do
+  enable false
+end

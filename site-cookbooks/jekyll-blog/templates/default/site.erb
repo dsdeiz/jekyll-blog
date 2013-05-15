@@ -1,0 +1,11 @@
+server {
+  listen   80;
+  server_name  <%= node['jekyll-blog']['hostname'] %>;
+
+  access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
+
+  location / {
+    root   /var/www/sites/<%= node['jekyll-blog']['hostname'] %>;
+    index  index.html index.htm;
+  }
+}
