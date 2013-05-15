@@ -1,6 +1,42 @@
+require 'time'
+
 # https://github.com/mojombo/jekyll/blob/master/Rakefile#L112-L146
 # http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html
+# https://github.com/plusjade/jekyll-bootstrap/blob/master/Rakefile
 namespace :site do
+
+  # Usage: rake "site:post[some title, 2013-05-15]"
+  desc "Create new post."
+  task :post, [:title, :date] do |t, args|
+    args.with_defaults(:title => 'New post...', :date => Time.now.strftime("%Y-%m-%d"))
+    begin
+      date = Time.parse(args.date).strftime("%Y-%m-%d")
+    rescue
+      puts "Date format must be YYYY-MM-DD."
+      exit -1
+    end
+
+    filename = args.title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+    filename = "site/_posts/#{date}-#{filename}.md"
+
+    if File.exist?(filename)
+      puts "#{File.basename(filename)} already exists."
+      exit -1
+    end
+
+    puts "Creating new post: #{filename}"
+    open(filename, 'w') do |post|
+      post.puts "---"
+      post.puts "layout: post"
+      post.puts "title: #{args.title}"
+      post.puts "date: #{date}"
+      post.puts "categories:"
+      post.puts "tags:"
+      post.puts "---"
+    end
+  end
+
+  # Build jekyll.
   desc "Generate site."
   task :generate do
     Dir.chdir("site") do
@@ -8,6 +44,7 @@ namespace :site do
     end
   end
 
+  # Deploy site.
   desc "Commit site to master branch."
   task :publish => [:generate] do
     # Make sure we are up to date.
