@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "precise32"
 
-  config.vm.synced_folder "site/_site", "/var/www/sites/jekyll.vagrant"
+  config.vm.synced_folder "_site", "/var/www/sites/jekyll.vagrant"
 
   config.vm.network :private_network, ip: "33.33.33.5"
 

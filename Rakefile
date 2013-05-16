@@ -17,7 +17,7 @@ namespace :site do
     end
 
     filename = args.title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
-    filename = "site/_posts/#{date}-#{filename}.md"
+    filename = "_posts/#{date}-#{filename}.md"
 
     if File.exist?(filename)
       puts "#{File.basename(filename)} already exists."
@@ -40,7 +40,7 @@ namespace :site do
   desc "Create new page."
   task :page, [:filename] do |t, args|
     args.with_defaults(:filename => 'new-page.md')
-    filename = "site/#{args.filename}"
+    filename = "#{args.filename}"
 
     if File.exist?(filename)
       puts "#{File.basename(filename)} already exists."
@@ -78,10 +78,7 @@ namespace :site do
 
     # Copy the contents of the generated site over to 'generated site'
     # directory.
-    Dir.glob("site/*") do |path|
-      next unless path == "site/_site"
-      cp_r "#{path}/.", 'generated-site'
-    end
+    cp_r "_site", 'generated-site'
 
     sha = `git log`.match(/[a-z0-9]{40}/)[0]
     Dir.chdir('generated-site') do
