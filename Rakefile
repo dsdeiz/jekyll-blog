@@ -51,7 +51,7 @@ namespace :site do
 
     open(filename, 'w') do |post|
       post.puts "---"
-      post.puts "layout: page"
+      post.puts "layout: default"
       post.puts "title:"
       post.puts "---"
     end
