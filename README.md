@@ -13,19 +13,19 @@
     <th>Description</th>
   </tr>
   <tr>
-    <td>`rake site:generate`</td>
-    <td> Run `jekyll build` on site directory.</td>
+    <td><code>rake site:generate</code></td>
+    <td> Run <code>jekyll build</code> on site directory.</td>
   </tr>
   <tr>
-    <td>`rake site:publish`</td>
+    <td><code>rake site:publish</code></td>
     <td> Commit changes to `master` branch.</td>
   </tr>
   <tr>
-    <td>`rake "site:post[some title, 2013-05-15]"`</td>
+    <td><code>rake "site:post[some title, 2013-05-15]"</code></td>
     <td> Create new post.</td>
   </tr>
   <tr>
-    <td>`rake "site:page[filename.ext]"`</td>
+    <td><code>rake "site:page[filename.ext]"</code></td>
     <td> Create new page.</td>
   </tr>
 </table>
