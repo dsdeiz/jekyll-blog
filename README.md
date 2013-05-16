@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <td><code>rake site:publish</code></td>
-    <td> Commit changes to `master` branch.</td>
+    <td> Commit changes to <code>master</code> branch.</td>
   </tr>
   <tr>
     <td><code>rake "site:post[some title, 2013-05-15]"</code></td>
