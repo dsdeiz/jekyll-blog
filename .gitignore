@@ -4,3 +4,6 @@ _site
 .vagrant
 generated-site
 .sass-cache
+files
+.kitchen/
+.kitchen.local.yml

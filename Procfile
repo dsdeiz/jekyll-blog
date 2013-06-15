@@ -1,2 +1,1 @@
-jekyll: jekyll build --watch
-compass: compass watch
+jekyll: sh -c 'cd site && jekyll build --watch'

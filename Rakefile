@@ -88,4 +88,9 @@ namespace :site do
     end
   end
 
+  # Usage: rake site:files
+  desc "Copy files to remote."
+  task :files do
+    sh "rsync --archive --compress --one-file-system --hard-links --update --delete files droplet:/var/www/fr.ench.info && ssh droplet 'chown -R www-data:www-data /var/www/fr.ench.info/files'"
+  end
 end
